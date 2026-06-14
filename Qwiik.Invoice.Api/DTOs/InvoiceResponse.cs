@@ -4,7 +4,7 @@ namespace Qwiik.Invoice.Api.DTOs
 {
     public class InvoiceResponse
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string InvoiceNumber { get; set; } = string.Empty;
 

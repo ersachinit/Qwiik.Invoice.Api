@@ -29,8 +29,8 @@ namespace Qwiik.Invoice.Api.Controllers
             return Ok(invoices);
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<ActionResult<InvoiceResponse>> GetInvoiceById(Guid id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<InvoiceResponse>> GetInvoiceById(int id)
         {
             var invoice = await _invoiceService.GetInvoiceByIdAsync(id);
             if (invoice == null)
@@ -38,8 +38,8 @@ namespace Qwiik.Invoice.Api.Controllers
             return Ok(invoice);
         }
 
-        [HttpPatch("{id:guid}/status")]
-        public async Task<IActionResult> UpdateStatus(Guid id, UpdateInvoiceStatusRequest request)
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> UpdateStatus(int id, UpdateInvoiceStatusRequest request)
         {
             await _invoiceService.UpdateStatusAsync(id, request);
             return NoContent();

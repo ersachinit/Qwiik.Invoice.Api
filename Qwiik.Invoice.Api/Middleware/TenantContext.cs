@@ -2,6 +2,6 @@
 {
     public class TenantContext
     {
-        public Guid TenantId { get; set; }
+        public int TenantId { get; set; }
     }
 }

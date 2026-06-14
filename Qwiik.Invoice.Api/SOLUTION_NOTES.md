@@ -24,11 +24,11 @@ dotnet run
 https://localhost:<port>/swagger
 
 5. Insert one manually created tenant record into the 'Tenants' table using SQL Server Management Studio or a similar tool:
-Insert into Tenants (Id, Name, CreatedAt) Values ('11111111-1111-1111-1111-111111111111', 'Test Tenant', GETUTCDATE())
+Insert into Tenants (Name, CreatedAt) Values ('Test Tenant', GETUTCDATE())
 
 6. Use the following request header when testing APIs:
 
-X-Tenant-Id: 11111111-1111-1111-1111-111111111111
+X-Tenant-Id: 1
 
 ---
 
@@ -139,6 +139,13 @@ Each invoice belongs to exactly one tenant.
 
 Entity Framework Core migrations are used to create and manage database schema changes.
 
+### Primary Key Strategy
+
+The solution uses INT identity columns for primary keys.
+
+Given the expected application scope and centralized SQL Server deployment model, INT identities were chosen to keep indexes compact, reduce storage overhead, and improve query efficiency.
+
+For larger distributed systems requiring globally unique identifiers across multiple services or databases, GUIDs could also be considered depending on the architectural requirements.
 ---
 
 ## 6. API Design Explanation
@@ -264,6 +271,11 @@ Implemented using:
 
 This prevents large result sets from being returned and improves scalability.
 
+### Key Selection Considerations
+
+INT identity keys were selected to reduce index size and improve database efficiency.
+
+Compared to GUID-based keys, INT values require less storage, produce smaller indexes, reduce page reads, and can improve cache utilization. These characteristics help reduce database resource consumption as data volume grows.
 ---
 
 ## 10. Testing Approach

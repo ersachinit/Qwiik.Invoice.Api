@@ -18,7 +18,7 @@
                 await context.Response.WriteAsync("X-Tenant-Id header is required.");
                 return;
             }
-            if (!Guid.TryParse(tenantIdValue, out var tenantId))
+            if (!int.TryParse(tenantIdValue, out var tenantId))
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
                 await context.Response.WriteAsync("Invalid Tenant Id.");

@@ -2,9 +2,9 @@
 {
     public class Invoice
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public Guid TenantId { get; set; }
+        public int TenantId { get; set; }
         public Tenant? Tenant { get; set; }
         public string InvoiceNumber { get; set; } = string.Empty;
 

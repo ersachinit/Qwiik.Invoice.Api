@@ -84,7 +84,7 @@ X-Tenant-Id
 
 Example:
 
-X-Tenant-Id: 11111111-1111-1111-1111-111111111111
+X-Tenant-Id: 1
 
 All invoice operations are scoped to the supplied tenant.
 

@@ -31,7 +31,7 @@ namespace Qwiik.Invoice.Api.Services
 
             var invoice = new InvoiceEntity
             {
-                Id = Guid.NewGuid(),
+                Id = 0, // Let the database generate the ID
                 TenantId = _tenantContext.TenantId,
                 InvoiceNumber = request.InvoiceNumber,
                 CustomerName = request.CustomerName,
@@ -76,7 +76,7 @@ namespace Qwiik.Invoice.Api.Services
             };
         }
 
-        public async Task<InvoiceResponse?> GetInvoiceByIdAsync(Guid invoiceId)
+        public async Task<InvoiceResponse?> GetInvoiceByIdAsync(int invoiceId)
         {
             var invoice = await _dbContext.Invoices
                 .FirstOrDefaultAsync(x =>
@@ -88,7 +88,7 @@ namespace Qwiik.Invoice.Api.Services
             return MapToResponse(invoice);
         }
 
-        public async Task UpdateStatusAsync(Guid invoiceId, UpdateInvoiceStatusRequest request)
+        public async Task UpdateStatusAsync(int invoiceId, UpdateInvoiceStatusRequest request)
         {
             var invoice = await _dbContext.Invoices
                 .FirstOrDefaultAsync(x => x.Id == invoiceId && x.TenantId == _tenantContext.TenantId);

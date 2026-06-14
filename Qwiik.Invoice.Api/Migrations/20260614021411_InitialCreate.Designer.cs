@@ -12,7 +12,7 @@ using Qwiik.Invoice.Api.Data;
 namespace Qwiik.Invoice.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260611074655_InitialCreate")]
+    [Migration("20260614021411_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,9 +27,11 @@ namespace Qwiik.Invoice.Api.Migrations
 
             modelBuilder.Entity("Qwiik.Invoice.Api.Entities.Invoice", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -56,8 +58,8 @@ namespace Qwiik.Invoice.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -76,9 +78,11 @@ namespace Qwiik.Invoice.Api.Migrations
 
             modelBuilder.Entity("Qwiik.Invoice.Api.Entities.Tenant", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
